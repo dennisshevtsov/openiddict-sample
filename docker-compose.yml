@@ -1,0 +1,26 @@
+version: '3.5'
+
+services:
+  survey-app:
+    container_name: openiddict-sample
+    image: openiddict-sample
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      target: openiddict-sample
+    ports:
+      - "5001:80"
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_URLS: http://+:80
+      CONNECTIONSTRING: "Host=openiddict-sample-db;Port=5432;Database=survey_db;Username=dev;Password=dev;Include Error Detail=true"
+    depends_on:
+      - openiddict-sample-db
+  openiddict-sample-db:
+    container_name: openiddict-sample-db
+    image: postgres:16
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: dev
+      POSTGRES_PASSWORD: dev
