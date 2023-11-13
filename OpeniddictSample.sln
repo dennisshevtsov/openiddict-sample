@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34221.43
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpeniddictSample.IdentityProviderApi", "src\OpeniddictSample.IdentityProviderApi\OpeniddictSample.IdentityProviderApi.csproj", "{843D3BFA-9EB2-4339-9EEC-FE5312F3AC49}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpeniddictSample.IdentityProviderApi", "src\OpeniddictSample.IdentityProviderApi\OpeniddictSample.IdentityProviderApi.csproj", "{843D3BFA-9EB2-4339-9EEC-FE5312F3AC49}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpeniddictSample.IdentityProviderApi.Test", "test\OpeniddictSample.IdentityProviderApi.Test\OpeniddictSample.IdentityProviderApi.Test.csproj", "{411CC96B-A773-4647-8909-74A231683913}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpeniddictSample.IdentityProviderApi.Test", "test\OpeniddictSample.IdentityProviderApi.Test\OpeniddictSample.IdentityProviderApi.Test.csproj", "{411CC96B-A773-4647-8909-74A231683913}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{9991DE28-73A0-4558-BF8A-9B4CDCD483AA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{411CC96B-A773-4647-8909-74A231683913}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{411CC96B-A773-4647-8909-74A231683913}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{411CC96B-A773-4647-8909-74A231683913}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9991DE28-73A0-4558-BF8A-9B4CDCD483AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9991DE28-73A0-4558-BF8A-9B4CDCD483AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9991DE28-73A0-4558-BF8A-9B4CDCD483AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9991DE28-73A0-4558-BF8A-9B4CDCD483AA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
