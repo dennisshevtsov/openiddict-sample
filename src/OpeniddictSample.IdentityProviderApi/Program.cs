@@ -14,7 +14,11 @@ builder.Services.AddOpenIddict()
                                              .AddDevelopmentSigningCertificate()
                                              .UseAspNetCore()
                                              .EnableTokenEndpointPassthrough())
-                .AddValidation(builder => builder.UseAspNetCore());
+                .AddValidation(builder =>
+                {
+                  builder.UseLocalServer();
+                  builder.UseAspNetCore();
+                });
 
 WebApplication app = builder.Build();
 app.Run();
