@@ -13,7 +13,7 @@ RUN dotnet build "OpeniddictSample.IdentityProviderApi.csproj" -c Release -o /ap
 FROM build AS publish
 RUN dotnet publish "OpeniddictSample.IdentityProviderApi.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
-FROM base AS final
+FROM base AS openiddict-sample-id
 WORKDIR /app
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "OpeniddictSample.IdentityProviderApi.dll"]
