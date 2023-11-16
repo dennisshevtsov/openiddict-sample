@@ -6,7 +6,7 @@ services:
     image: openiddict-sample-id
     build:
       context: .
-      dockerfile: ./src/OpeniddictSample.IdentityProviderApi/Dockerfile
+      dockerfile: ./src/OpeniddictSample.Id/Dockerfile
       target: openiddict-sample-id
     ports:
       - "5001:80"
