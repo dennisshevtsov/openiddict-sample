@@ -4,6 +4,7 @@
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
+builder.Services.AddOpenIddict();
 
 WebApplication app = builder.Build();
 app.UseRouting();
