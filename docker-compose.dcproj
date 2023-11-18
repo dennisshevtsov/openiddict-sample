@@ -6,7 +6,7 @@
     <ProjectGuid>9991de28-73a0-4558-bf8a-9b4cdcd483aa</ProjectGuid>
     <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
     <DockerServiceUrl>{Scheme}://localhost:{ServicePort}</DockerServiceUrl>
-    <DockerServiceName>openiddictsample.identityproviderapi</DockerServiceName>
+    <DockerServiceName>openiddict-sample-id</DockerServiceName>
   </PropertyGroup>
   <ItemGroup>
     <None Include="docker-compose.yml" />

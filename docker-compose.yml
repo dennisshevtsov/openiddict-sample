@@ -2,12 +2,12 @@ version: '3.5'
 
 services:
   survey-app:
-    container_name: openiddict-sample
-    image: openiddict-sample
+    container_name: openiddict-sample-id
+    image: openiddict-sample-id
     build:
       context: .
-      dockerfile: ./src/OpeniddictSample.IdentityProviderApi/Dockerfile
-      target: openiddict-sample
+      dockerfile: ./src/OpeniddictSample.Id/Dockerfile
+      target: openiddict-sample-id
     ports:
       - "5001:80"
     environment:
