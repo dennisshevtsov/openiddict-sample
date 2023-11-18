@@ -21,6 +21,7 @@ builder.Services.AddOpenIddict()
                 .AddValidation(builder =>
                 {
                   builder.UseLocalServer();
+                  builder.AddAudiences("openiddict-sample-api");
                   builder.UseAspNetCore();
                 });
 
