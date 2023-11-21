@@ -1,23 +1,35 @@
 version: '3.5'
 
 services:
-  survey-app:
-    container_name: openiddict-sample-id
-    image: openiddict-sample-id
+  openiddict-api:
+    container_name: openiddict-api
+    image: openiddict-api
     build:
       context: .
-      dockerfile: ./src/OpeniddictSample.Id/Dockerfile
-      target: openiddict-sample-id
+      dockerfile: ./src/OpeniddictSample.Api/Dockerfile
+      target: openiddict-api
     ports:
       - "5001:80"
     environment:
       ASPNETCORE_ENVIRONMENT: Development
       ASPNETCORE_URLS: http://+:80
+  openiddict-id:
+    container_name: openiddict-id
+    image: openiddict-id
+    build:
+      context: .
+      dockerfile: ./src/OpeniddictSample.Id/Dockerfile
+      target: openiddict-id
+    ports:
+      - "5002:80"
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_URLS: http://+:80
       CONNECTIONSTRING: "Host=openiddict-sample-db;Port=5432;Database=openiddict_sample_db;Username=dev;Password=dev;Include Error Detail=true"
     depends_on:
-      - openiddict-sample-db
-  openiddict-sample-db:
-    container_name: openiddict-sample-db
+      - openiddict-id-db
+  openiddict-id-db:
+    container_name: openiddict-id-db
     image: postgres:16
     ports:
       - "5432:5432"
