@@ -18,7 +18,7 @@ public sealed class SurveyTest
   {
     _httpClient = new HttpClient
     {
-      BaseAddress = new Uri("http://localhost:5001/api")
+      BaseAddress = new Uri("http://localhost:5001/api/")
     };
   }
 
