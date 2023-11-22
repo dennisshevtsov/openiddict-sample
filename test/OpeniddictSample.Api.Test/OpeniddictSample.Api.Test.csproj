@@ -17,6 +17,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="OpenIddict.Client" Version="4.10.0" />
   </ItemGroup>
 
 </Project>
