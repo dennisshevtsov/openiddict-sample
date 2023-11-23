@@ -9,7 +9,7 @@ using static OpenIddict.Abstractions.OpenIddictConstants;
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<DbContext>(options =>
                 {
-                  string? connectionString = builder.Configuration.GetConnectionString("openiddict-id-db");
+                  string? connectionString = builder.Configuration.GetConnectionString("openiddict_id_db");
                   ArgumentNullException.ThrowIfNullOrWhiteSpace(connectionString);
                   options.UseNpgsql(connectionString);
                   options.UseOpenIddict();

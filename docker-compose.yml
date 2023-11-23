@@ -25,7 +25,7 @@ services:
     environment:
       ASPNETCORE_ENVIRONMENT: Development
       ASPNETCORE_URLS: http://+:80
-      CONNECTIONSTRINGS_OPENIDDICT_ID_DB: "Host=openiddict-sample-db;Port=5432;Database=openiddict_sample_db;Username=dev;Password=dev;Include Error Detail=true"
+      CONNECTIONSTRINGS__OPENIDDICT_ID_DB: "Host=openiddict-id-db;Port=5432;Database=openiddict_sample_db;Username=dev;Password=dev;Include Error Detail=true"
     depends_on:
       - openiddict-id-db
   openiddict-id-db:
