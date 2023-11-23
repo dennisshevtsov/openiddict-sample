@@ -7,10 +7,12 @@ using OpenIddict.Abstractions;
 using static OpenIddict.Abstractions.OpenIddictConstants;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
-builder.Services.AddDbContext<DbContext>(builder =>
+builder.Services.AddDbContext<DbContext>(options =>
                 {
-                  builder.UseNpgsql("");
-                  builder.UseOpenIddict();
+                  string? connectionString = builder.Configuration.GetConnectionString("openiddict-id-db");
+                  ArgumentNullException.ThrowIfNullOrWhiteSpace(connectionString);
+                  options.UseNpgsql(connectionString);
+                  options.UseOpenIddict();
                 });
 builder.Services.AddOpenIddict()
                 .AddCore(builder => builder.UseEntityFrameworkCore())
