@@ -10,12 +10,13 @@ WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<DbContext>(options =>
                 {
                   string? connectionString = builder.Configuration.GetConnectionString("openiddict_id_db");
-                  ArgumentNullException.ThrowIfNullOrWhiteSpace(connectionString);
+                  ArgumentNullException.ThrowIfNull(connectionString);
                   options.UseNpgsql(connectionString);
                   options.UseOpenIddict();
                 });
 builder.Services.AddOpenIddict()
-                .AddCore(builder => builder.UseEntityFrameworkCore())
+                .AddCore(builder => builder.UseEntityFrameworkCore()
+                                           .UseDbContext<DbContext>())
                 .AddServer(builder => builder.SetTokenEndpointUris("connect/token")
                                              .AllowClientCredentialsFlow()
                                              .AddDevelopmentEncryptionCertificate()
