@@ -29,6 +29,7 @@ builder.Services.AddOpenIddict()
                   //builder.AddAudiences("openiddict-sample-api");
                   builder.UseAspNetCore();
                 });
+builder.Services.AddControllers();
 
 WebApplication app = builder.Build();
 
@@ -55,4 +56,6 @@ using (IServiceScope scope = app.Services.CreateScope())
   }
 }
 
+app.UseRouting();
+app.MapControllers();
 app.Run();

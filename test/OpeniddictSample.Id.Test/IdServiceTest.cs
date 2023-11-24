@@ -25,6 +25,9 @@ public sealed class IdServiceTest
                 ClientId = "openiddict-api",
                 ClientSecret = "test",
               });
+              options.AllowClientCredentialsFlow();
+              options.DisableTokenStorage();
+              options.UseSystemNetHttp();
             });
 
     IServiceProvider serviceProvider = services.BuildServiceProvider();

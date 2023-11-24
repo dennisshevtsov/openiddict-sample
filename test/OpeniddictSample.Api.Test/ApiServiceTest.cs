@@ -41,7 +41,7 @@ public sealed class SurveyTest
   [TestCleanup] public void Cleanup()
   {
     _httpClient?.Dispose();
-    _serviceScope.Dispose();
+    _serviceScope?.Dispose();
   }
 
   [TestMethod]
