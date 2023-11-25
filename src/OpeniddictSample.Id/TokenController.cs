@@ -5,6 +5,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using OpenIddict.Abstractions;
+using OpenIddict.Server.AspNetCore;
 using System.Security.Claims;
 using static OpenIddict.Abstractions.OpenIddictConstants;
 
@@ -32,6 +33,6 @@ public sealed class TokenController : ControllerBase
       [Destinations.AccessToken, Destinations.IdentityToken] :
       [Destinations.AccessToken]);
 
-    return SignIn(new ClaimsPrincipal(identity), "Bearer");//; OpenIddictServerAspNetCoreDefaults.AuthenticationScheme);
+    return SignIn(new ClaimsPrincipal(identity), OpenIddictServerAspNetCoreDefaults.AuthenticationScheme);
   }
 }
