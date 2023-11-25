@@ -21,8 +21,8 @@ public sealed class IdServiceTest
             {
               options.AddRegistration(new OpenIddictClientRegistration
               {
-                Issuer = new Uri("http://localhost:5002"),
-                ClientId = "openiddict-api",
+                Issuer = new Uri("https://localhost:5004"),
+                ClientId = "openiddict-sample-api",
                 ClientSecret = "test",
               });
               options.AllowClientCredentialsFlow();
