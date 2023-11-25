@@ -15,6 +15,9 @@ services:
       ASPNETCORE_ENVIRONMENT: Development
       ASPNETCORE_HTTP_PORTS: 80
       ASPNETCORE_HTTPS_PORTS: 443
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
   openiddict-id:
     container_name: openiddict-id
     image: openiddict-id
@@ -32,6 +35,9 @@ services:
       CONNECTIONSTRINGS__OPENIDDICT_ID_DB: "Host=openiddict-id-db;Port=5432;Database=openiddict_sample_db;Username=dev;Password=dev;Include Error Detail=true"
     depends_on:
       - openiddict-id-db
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
   openiddict-id-db:
     container_name: openiddict-id-db
     image: postgres:16
