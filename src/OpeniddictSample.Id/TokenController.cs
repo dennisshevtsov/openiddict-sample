@@ -19,8 +19,8 @@ public sealed class TokenController : ControllerBase
     ClaimsIdentity identity = new
     (
       authenticationType: TokenValidationParameters.DefaultAuthenticationType,
-      nameType          : Claims.Name,
-      roleType          : Claims.Role
+      nameType: Claims.Name,
+      roleType: Claims.Role
     );
 
     identity.SetClaim(Claims.Subject, Guid.NewGuid().ToString());

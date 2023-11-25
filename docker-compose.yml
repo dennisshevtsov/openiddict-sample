@@ -21,10 +21,12 @@ services:
       dockerfile: ./src/OpeniddictSample.Id/Dockerfile
       target: openiddict-id
     ports:
-      - "5002:80"
+      - "5003:80"
+      - "5004:443"
     environment:
       ASPNETCORE_ENVIRONMENT: Development
-      ASPNETCORE_URLS: https://+:80
+      ASPNETCORE_HTTP_PORTS: 80
+      ASPNETCORE_HTTPS_PORTS: 443
       CONNECTIONSTRINGS__OPENIDDICT_ID_DB: "Host=openiddict-id-db;Port=5432;Database=openiddict_sample_db;Username=dev;Password=dev;Include Error Detail=true"
     depends_on:
       - openiddict-id-db

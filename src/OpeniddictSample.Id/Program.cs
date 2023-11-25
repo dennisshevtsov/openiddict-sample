@@ -8,12 +8,12 @@ using static OpenIddict.Abstractions.OpenIddictConstants;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<DbContext>(options =>
-                {
-                  string? connectionString = builder.Configuration.GetConnectionString("openiddict_id_db");
-                  ArgumentNullException.ThrowIfNull(connectionString);
-                  options.UseNpgsql(connectionString);
-                  options.UseOpenIddict();
-                });
+{
+  string? connectionString = builder.Configuration.GetConnectionString("openiddict_id_db");
+  ArgumentNullException.ThrowIfNull(connectionString);
+  options.UseNpgsql(connectionString);
+  options.UseOpenIddict();
+});
 builder.Services.AddOpenIddict()
                 .AddCore(builder => builder.UseEntityFrameworkCore()
                                            .UseDbContext<DbContext>())

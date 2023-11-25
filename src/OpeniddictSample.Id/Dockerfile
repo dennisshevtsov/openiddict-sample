@@ -1,19 +1,25 @@
+#See https://aka.ms/customizecontainer to learn how to customize your debug container and how Visual Studio uses this Dockerfile to build your images for faster debugging.
+
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
+USER app
 WORKDIR /app
-EXPOSE 80
+EXPOSE 8080
+EXPOSE 8081
 
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["src/OpeniddictSample.IdentityProviderApi/OpeniddictSample.IdentityProviderApi.csproj", "src/OpeniddictSample.IdentityProviderApi/"]
-RUN dotnet restore "src/OpeniddictSample.IdentityProviderApi/OpeniddictSample.IdentityProviderApi.csproj"
+COPY ["src/OpeniddictSample.Id2/OpeniddictSample.Id2.csproj", "src/OpeniddictSample.Id2/"]
+RUN dotnet restore "./src/OpeniddictSample.Id2/./OpeniddictSample.Id2.csproj"
 COPY . .
-WORKDIR "/src/src/OpeniddictSample.IdentityProviderApi"
-RUN dotnet build "OpeniddictSample.IdentityProviderApi.csproj" -c Release -o /app/build
+WORKDIR "/src/src/OpeniddictSample.Id2"
+RUN dotnet build "./OpeniddictSample.Id2.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "OpeniddictSample.IdentityProviderApi.csproj" -c Release -o /app/publish /p:UseAppHost=false
+ARG BUILD_CONFIGURATION=Release
+RUN dotnet publish "./OpeniddictSample.Id2.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
-FROM base AS openiddict-sample-id
+FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "OpeniddictSample.IdentityProviderApi.dll"]
+ENTRYPOINT ["dotnet", "OpeniddictSample.Id2.dll"]
