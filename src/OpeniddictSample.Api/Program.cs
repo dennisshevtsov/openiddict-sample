@@ -8,18 +8,18 @@ using Microsoft.AspNetCore.Mvc.Authorization;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers(options =>
-                {
-                  AuthorizationPolicy policy =
-                    new AuthorizationPolicyBuilder().RequireAuthenticatedUser()
-                                                    .Build();
-                  AuthorizeFilter filter = new(policy);
+{
+  AuthorizationPolicy policy =
+    new AuthorizationPolicyBuilder().RequireAuthenticatedUser()
+                                    .Build();
+  AuthorizeFilter filter = new(policy);
 
-                  options.Filters.Add(filter);
-                });
+  options.Filters.Add(filter);
+});
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {
-                  options.Authority = "http://localhost:5002"; // id proj url
+                  options.Authority = "http://localhost:5004"; // id proj url
                   options.Audience = "openiddict-sample-api";
                   options.RequireHttpsMetadata = false;
                 });
