@@ -2,8 +2,6 @@
 // Licensed under the MIT License.
 // See LICENSE in the project root for license information.
 
-using Microsoft.Extensions.Configuration;
-
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 builder.Services.SetUpApi();
 builder.Services.SetUpAuthentication(builder.Configuration.GetAuthenticationSettings());
