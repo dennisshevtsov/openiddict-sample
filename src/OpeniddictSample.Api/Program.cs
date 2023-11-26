@@ -2,17 +2,9 @@
 // Licensed under the MIT License.
 // See LICENSE in the project root for license information.
 
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 builder.Services.SetUpApi();
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddJwtBearer(options =>
-                {
-                  options.Authority = "http://localhost:5004"; // id proj url
-                  options.Audience = "openiddict-sample-api";
-                  options.RequireHttpsMetadata = false;
-                });
+builder.Services.SetUpAuthentication();
 
 WebApplication app = builder.Build();
 app.UseRouting();
