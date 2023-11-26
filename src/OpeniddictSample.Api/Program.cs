@@ -3,19 +3,9 @@
 // See LICENSE in the project root for license information.
 
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc.Authorization;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
-builder.Services.AddControllers(options =>
-{
-  AuthorizationPolicy policy =
-    new AuthorizationPolicyBuilder().RequireAuthenticatedUser()
-                                    .Build();
-  AuthorizeFilter filter = new(policy);
-
-  options.Filters.Add(filter);
-});
+builder.Services.SetUpApi();
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {
