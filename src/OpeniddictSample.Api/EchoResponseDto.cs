@@ -4,4 +4,4 @@
 
 namespace OpeniddictSample.Api;
 
-public sealed record class EchoDto(string Message);
+public sealed record class EchoResponseDto(string Message);

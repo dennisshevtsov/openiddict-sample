@@ -47,8 +47,11 @@ public sealed class SurveyTest
   [TestMethod]
   public async Task GetSurvey_NoToken_401Returned()
   {
+    // Assert
+    string message = Guid.NewGuid().ToString();
+
     // Act
-    HttpResponseMessage responseMessage = await _httpClient.GetAsync("survey");
+    HttpResponseMessage responseMessage = await _httpClient.GetAsync($"echo/{message}");
 
     // Assert
     Assert.AreEqual(HttpStatusCode.Unauthorized, responseMessage.StatusCode);

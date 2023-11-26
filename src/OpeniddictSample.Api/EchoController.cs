@@ -10,7 +10,7 @@ namespace OpeniddictSample.Api;
 [ApiController]
 public sealed class EchoController : ControllerBase
 {
-  [HttpGet]
+  [HttpGet("{message}", Name = nameof(EchoController.Echo))]
   [ResponseCache(NoStore = true, Location = ResponseCacheLocation.None)]
-  public IActionResult GetSurveys(EchoDto echoDto) => Ok(echoDto);
+  public EchoResponseDto Echo([FromRoute] string message) => new(message);
 }
