@@ -5,6 +5,7 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
+using OpeniddictSample.Api;
 
 namespace Microsoft.Extensions.DependencyInjection;
 
@@ -27,17 +28,13 @@ public static class ApiServicesExtensions
     return services;
   }
 
-  public static IServiceCollection SetUpAuthentication(this IServiceCollection services)
+  public static IServiceCollection SetUpAuthentication(
+    this IServiceCollection services, AuthenticationSettings settings)
   {
     ArgumentNullException.ThrowIfNull(services);
 
     services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-            .AddJwtBearer(options =>
-            {
-              options.Authority = "http://localhost:5004"; // id proj url
-              options.Audience = "openiddict-sample-api";
-              options.RequireHttpsMetadata = false;
-            });
+            .AddJwtBearer(options => options.Authority = settings.IdentityProviderUrl);
 
     return services;
   }
