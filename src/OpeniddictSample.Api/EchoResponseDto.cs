@@ -4,4 +4,4 @@
 
 namespace OpeniddictSample.Api;
 
-public sealed record class SurveyResponseDto(Guid SurveyId, string Name, string Description, DateTime CreatedOn);
+public sealed record class EchoResponseDto(string Message);
