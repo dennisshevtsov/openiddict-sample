@@ -2,7 +2,7 @@
 
 namespace Microsoft.Extensions.Configuration;
 
-public static class ConfigurationExtensions
+public static class ApiConfigurationExtensions
 {
   public static AuthenticationSettings GetAuthenticationSettings(this IConfiguration configuration, string section = "AUTHENTICATION") =>
     configuration.GetSection(section).Get<AuthenticationSettings>() ??

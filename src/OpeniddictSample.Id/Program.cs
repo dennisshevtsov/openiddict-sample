@@ -4,12 +4,10 @@
 
 using Microsoft.EntityFrameworkCore;
 using OpenIddict.Abstractions;
-using OpeniddictSample.Id;
 using static OpenIddict.Abstractions.OpenIddictConstants;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
-builder.Services.SetUpOpenIddict(
-  builder.Configuration.GetSection("ConnectionStrings").Get<DbSettings>()!);
+builder.Services.SetUpOpenIddict(builder.Configuration.GetDbSettings());
 builder.Services.AddControllers();
 
 WebApplication app = builder.Build();
