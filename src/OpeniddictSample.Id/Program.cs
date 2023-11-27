@@ -4,31 +4,12 @@
 
 using Microsoft.EntityFrameworkCore;
 using OpenIddict.Abstractions;
+using OpeniddictSample.Id;
 using static OpenIddict.Abstractions.OpenIddictConstants;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
-builder.Services.AddDbContext<DbContext>(options =>
-{
-  string? connectionString = builder.Configuration.GetConnectionString("openiddict_id_db");
-  ArgumentNullException.ThrowIfNull(connectionString);
-  options.UseNpgsql(connectionString);
-  options.UseOpenIddict();
-});
-builder.Services.AddOpenIddict()
-                .AddCore(builder => builder.UseEntityFrameworkCore()
-                                           .UseDbContext<DbContext>())
-                .AddServer(builder => builder.SetTokenEndpointUris("connect/token")
-                                             .AllowClientCredentialsFlow()
-                                             .AddDevelopmentEncryptionCertificate()
-                                             .AddDevelopmentSigningCertificate()
-                                             .UseAspNetCore()
-                                             .EnableTokenEndpointPassthrough())
-                .AddValidation(builder =>
-                {
-                  builder.UseLocalServer();
-                  //builder.AddAudiences("openiddict-sample-api");
-                  builder.UseAspNetCore();
-                });
+builder.Services.SetUpOpenIddict(
+  builder.Configuration.GetSection("ConnectionStrings").Get<DbSettings>()!);
 builder.Services.AddControllers();
 
 WebApplication app = builder.Build();
