@@ -12,30 +12,29 @@ public static class IdServiceExtensions
   public static IServiceCollection SetUpOpenIddict(this IServiceCollection services, DbSettings dbSettings)
   {
     ArgumentNullException.ThrowIfNull(services);
-    ArgumentNullException.ThrowIfNull(dbSettings);
+    ArgumentNullException.ThrowIfNull(dbSettings?.ConnectionString);
 
     services.AddDbContext<DbContext>(options =>
     {
-      string? connectionString = dbSettings.ConnectionString;
-      ArgumentNullException.ThrowIfNull(connectionString);
-      options.UseNpgsql(connectionString);
+      options.UseNpgsql(dbSettings.ConnectionString);
       options.UseOpenIddict();
     });
+
     services.AddOpenIddict()
-                    .AddCore(builder => builder.UseEntityFrameworkCore()
-                                               .UseDbContext<DbContext>())
-                    .AddServer(builder => builder.SetTokenEndpointUris("connect/token")
-                                                 .AllowClientCredentialsFlow()
-                                                 .AddDevelopmentEncryptionCertificate()
-                                                 .AddDevelopmentSigningCertificate()
-                                                 .UseAspNetCore()
-                                                 .EnableTokenEndpointPassthrough())
-                    .AddValidation(builder =>
-                    {
-                      builder.UseLocalServer();
-                      //builder.AddAudiences("openiddict-sample-api");
-                      builder.UseAspNetCore();
-                    });
+            .AddCore(builder => builder.UseEntityFrameworkCore()
+                                       .UseDbContext<DbContext>())
+            .AddServer(builder => builder.SetTokenEndpointUris("connect/token")
+                                         .AllowClientCredentialsFlow()
+                                         .AddDevelopmentEncryptionCertificate()
+                                         .AddDevelopmentSigningCertificate()
+                                         .UseAspNetCore()
+                                         .EnableTokenEndpointPassthrough())
+            .AddValidation(builder =>
+            {
+              builder.UseLocalServer();
+              //builder.AddAudiences("openiddict-sample-api");
+              builder.UseAspNetCore();
+            });
 
     return services;
   }

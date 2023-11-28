@@ -2,10 +2,7 @@
 // Licensed under the MIT License.
 // See LICENSE in the project root for license information.
 
-using Microsoft.EntityFrameworkCore;
-using OpenIddict.Abstractions;
 using OpeniddictSample.Id;
-using static OpenIddict.Abstractions.OpenIddictConstants;
 
 namespace Microsoft.AspNetCore.Builder;
 
