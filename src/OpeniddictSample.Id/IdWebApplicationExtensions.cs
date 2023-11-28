@@ -4,6 +4,7 @@
 
 using Microsoft.EntityFrameworkCore;
 using OpenIddict.Abstractions;
+using OpeniddictSample.Id;
 using static OpenIddict.Abstractions.OpenIddictConstants;
 
 namespace Microsoft.AspNetCore.Builder;
@@ -16,25 +17,10 @@ public static class IdWebApplicationExtensions
 
     using (IServiceScope scope = app.Services.CreateScope())
     {
-      DbContext dbContext = scope.ServiceProvider.GetRequiredService<DbContext>();
-      dbContext.Database.EnsureCreated();
-
-      IOpenIddictApplicationManager manager = scope.ServiceProvider.GetRequiredService<IOpenIddictApplicationManager>();
-
-      if (manager.FindByClientIdAsync("openiddict-sample-api").GetAwaiter().GetResult() == null)
-      {
-        manager.CreateAsync(new OpenIddictApplicationDescriptor
-        {
-          ClientId = "openiddict-sample-api",
-          ClientSecret = "test",
-          DisplayName = "Openiddict Sample API",
-          Permissions =
-      {
-        Permissions.Endpoints.Token,
-        Permissions.GrantTypes.ClientCredentials,
-      },
-        }).GetAwaiter().GetResult();
-      }
+      scope.ServiceProvider.GetRequiredService<IdDbInitializer>()
+                           .InitializeAsync(CancellationToken.None)
+                           .GetAwaiter()
+                           .GetResult();
     }
 
     return app;
