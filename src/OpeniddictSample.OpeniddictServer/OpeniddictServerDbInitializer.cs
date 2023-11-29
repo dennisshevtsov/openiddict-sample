@@ -8,7 +8,7 @@ using static OpenIddict.Abstractions.OpenIddictConstants;
 
 namespace OpeniddictSample.OpeniddictServer;
 
-public sealed class IdDbInitializer(DbContext dbContext, IOpenIddictApplicationManager manager)
+public sealed class OpeniddictServerDbInitializer(DbContext dbContext, IOpenIddictApplicationManager manager)
 {
   private readonly DbContext _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
   private readonly IOpenIddictApplicationManager _manager = manager ?? throw new ArgumentNullException(nameof(manager));
@@ -19,7 +19,7 @@ public sealed class IdDbInitializer(DbContext dbContext, IOpenIddictApplicationM
 
     if (await _manager.FindByClientIdAsync("openiddict-sample-api", cancellationToken) == null)
     {
-      await _manager.CreateAsync(IdDbInitializer.GetDefaultClient(), cancellationToken);
+      await _manager.CreateAsync(OpeniddictServerDbInitializer.GetDefaultClient(), cancellationToken);
     }
   }
 

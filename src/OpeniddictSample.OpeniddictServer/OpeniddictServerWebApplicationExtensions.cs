@@ -6,7 +6,7 @@ using OpeniddictSample.OpeniddictServer;
 
 namespace Microsoft.AspNetCore.Builder;
 
-public static class IdWebApplicationExtensions
+public static class OpeniddictServerWebApplicationExtensions
 {
   public static WebApplication SetUpDb(this WebApplication app)
   {
@@ -14,7 +14,7 @@ public static class IdWebApplicationExtensions
 
     using (IServiceScope scope = app.Services.CreateScope())
     {
-      scope.ServiceProvider.GetRequiredService<IdDbInitializer>()
+      scope.ServiceProvider.GetRequiredService<OpeniddictServerDbInitializer>()
                            .InitializeAsync(CancellationToken.None)
                            .GetAwaiter()
                            .GetResult();

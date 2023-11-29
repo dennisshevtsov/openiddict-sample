@@ -4,7 +4,7 @@
 
 namespace OpeniddictSample.ApiServer;
 
-public sealed class AuthenticationSettings(string identityProviderUrl)
+public sealed class ApiServerAuthenticationSettings(string identityProviderUrl)
 {
   public string IdentityProviderUrl { get; } = identityProviderUrl ?? throw new ArgumentNullException(nameof(identityProviderUrl));
 }

@@ -4,7 +4,7 @@
 
 namespace OpeniddictSample.OpeniddictServer;
 
-public sealed class DbSettings(string connectionString)
+public sealed class OpeniddictServerDbSettings(string connectionString)
 {
   public string ConnectionString { get; set; } = connectionString ?? throw new ArgumentNullException(nameof(connectionString));
 }

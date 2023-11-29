@@ -9,7 +9,7 @@ using OpeniddictSample.ApiServer;
 
 namespace Microsoft.Extensions.DependencyInjection;
 
-public static class ApiServicesExtensions
+public static class ApiServerServicesExtensions
 {
   public static IServiceCollection SetUpApi(this IServiceCollection services)
   {
@@ -29,7 +29,7 @@ public static class ApiServicesExtensions
   }
 
   public static IServiceCollection SetUpAuthentication(
-    this IServiceCollection services, AuthenticationSettings settings)
+    this IServiceCollection services, ApiServerAuthenticationSettings settings)
   {
     ArgumentNullException.ThrowIfNull(services);
 

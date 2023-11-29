@@ -6,13 +6,13 @@ using OpeniddictSample.OpeniddictServer;
 
 namespace Microsoft.Extensions.Configuration;
 
-public static class IdConfigurationExtensions
+public static class OpeniddictServerConfigurationExtensions
 {
-  public static DbSettings GetDbSettings(this IConfiguration configuration, string section = "ConnectionStrings")
+  public static OpeniddictServerDbSettings GetDbSettings(this IConfiguration configuration, string section = "ConnectionStrings")
   {
     ArgumentNullException.ThrowIfNull(configuration);
 
-    return configuration.GetSection(section).Get<DbSettings>() ??
+    return configuration.GetSection(section).Get<OpeniddictServerDbSettings>() ??
            throw new Exception("There are no DB settings.");
   }
 }
