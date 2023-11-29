@@ -3,7 +3,7 @@
 // See LICENSE in the project root for license information.
 
 using Microsoft.EntityFrameworkCore;
-using OpeniddictSample.Id;
+using OpeniddictSample.OpeniddictServer;
 
 namespace Microsoft.Extensions.DependencyInjection;
 

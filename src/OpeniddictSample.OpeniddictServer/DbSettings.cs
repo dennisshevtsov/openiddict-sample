@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 // See LICENSE in the project root for license information.
 
-namespace OpeniddictSample.Id;
+namespace OpeniddictSample.OpeniddictServer;
 
 public sealed class DbSettings(string connectionString)
 {

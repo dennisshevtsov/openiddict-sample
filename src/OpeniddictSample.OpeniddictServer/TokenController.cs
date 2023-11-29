@@ -9,7 +9,7 @@ using OpenIddict.Server.AspNetCore;
 using System.Security.Claims;
 using static OpenIddict.Abstractions.OpenIddictConstants;
 
-namespace OpeniddictSample.Id;
+namespace OpeniddictSample.OpeniddictServer;
 
 [ApiController]
 public sealed class TokenController : ControllerBase

@@ -6,7 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using OpenIddict.Client;
 using static OpenIddict.Client.OpenIddictClientModels;
 
-namespace OpeniddictSample.Id.Test;
+namespace OpeniddictSample.OpeniddictServer.Test;
 
 [TestClass]
 public sealed class IdServiceTest

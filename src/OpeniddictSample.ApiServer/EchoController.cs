@@ -4,7 +4,7 @@
 
 using Microsoft.AspNetCore.Mvc;
 
-namespace OpeniddictSample.Api;
+namespace OpeniddictSample.ApiServer;
 
 [Route("api/echo")]
 [ApiController]

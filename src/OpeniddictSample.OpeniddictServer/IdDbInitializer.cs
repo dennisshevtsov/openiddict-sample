@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using OpenIddict.Abstractions;
 using static OpenIddict.Abstractions.OpenIddictConstants;
 
-namespace OpeniddictSample.Id;
+namespace OpeniddictSample.OpeniddictServer;
 
 public sealed class IdDbInitializer(DbContext dbContext, IOpenIddictApplicationManager manager)
 {

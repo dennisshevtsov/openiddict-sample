@@ -6,7 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using OpenIddict.Client;
 using System.Net;
 
-namespace OpeniddictSample.Api.Test;
+namespace OpeniddictSample.ApiServer.Test;
 
 [TestClass]
 public sealed class SurveyTest
