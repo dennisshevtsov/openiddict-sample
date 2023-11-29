@@ -3,13 +3,13 @@
 // See LICENSE in the project root for license information.
 
 using Microsoft.EntityFrameworkCore;
-using OpeniddictSample.Id;
+using OpeniddictSample.OpeniddictServer;
 
 namespace Microsoft.Extensions.DependencyInjection;
 
-public static class IdServiceExtensions
+public static class OpeniddictServerServiceExtensions
 {
-  public static IServiceCollection SetUpOpenIddict(this IServiceCollection services, DbSettings dbSettings)
+  public static IServiceCollection SetUpOpenIddict(this IServiceCollection services, OpeniddictServerDbSettings dbSettings)
   {
     ArgumentNullException.ThrowIfNull(services);
     ArgumentNullException.ThrowIfNull(dbSettings?.ConnectionString);

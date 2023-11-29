@@ -6,7 +6,7 @@ services:
     image: openiddict-api
     build:
       context: .
-      dockerfile: ./src/OpeniddictSample.Api/Dockerfile
+      dockerfile: ./src/OpeniddictSample.ApiServer/Dockerfile
       target: openiddict-api
     ports:
       - "5001:80"
@@ -24,7 +24,7 @@ services:
     image: openiddict-id
     build:
       context: .
-      dockerfile: ./src/OpeniddictSample.Id/Dockerfile
+      dockerfile: ./src/OpeniddictSample.OpeniddictServer/Dockerfile
       target: openiddict-id
     ports:
       - "5003:80"

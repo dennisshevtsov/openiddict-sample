@@ -6,10 +6,10 @@ using Microsoft.Extensions.DependencyInjection;
 using OpenIddict.Client;
 using static OpenIddict.Client.OpenIddictClientModels;
 
-namespace OpeniddictSample.Id.Test;
+namespace OpeniddictSample.OpeniddictServer.Test;
 
 [TestClass]
-public sealed class IdServiceTest
+public sealed class OpeniddictServerTest
 {
   [TestMethod]
   public async Task GetToken_CorrectCreadentials_TokenReturned()
