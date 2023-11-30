@@ -1,5 +1,4 @@
 FROM node:lts AS build
-#USER app
 WORKDIR /app
 COPY package.json ./
 RUN npm install
