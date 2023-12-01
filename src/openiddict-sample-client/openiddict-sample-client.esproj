@@ -6,5 +6,10 @@
     <ShouldRunBuildScript>false</ShouldRunBuildScript>
     <!-- Folder where production build objects will be placed -->
     <PublishAssetsDirectory>$(MSBuildProjectDirectory)\dist\openiddict-sample-client\</PublishAssetsDirectory>
+
+    <!-- Docker -->
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <DockerfileContext>..\..</DockerfileContext>
+    <DockerComposeProjectPath>..\..\docker-compose.dcproj</DockerComposeProjectPath>
   </PropertyGroup>
 </Project>

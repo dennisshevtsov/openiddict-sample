@@ -1,6 +1,11 @@
 version: '3.5'
 
 services:
+  openiddict-client:
+    container_name: openiddict-client
+    build:
+      context: .
+      dockerfile: ./src/openiddict-sample-client/Dockerfile
   openiddict-api:
     container_name: openiddict-api
     image: openiddict-api
