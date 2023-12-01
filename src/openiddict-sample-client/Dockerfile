@@ -1,5 +1,4 @@
 FROM node:lts AS build
-#USER app
 WORKDIR /app
 COPY ["./src/openiddict-sample-client/package*.json", "./"]
 RUN npm ci
