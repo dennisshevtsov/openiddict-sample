@@ -1,10 +1,12 @@
 FROM node:lts AS build
+#USER app
 WORKDIR /app
-COPY package.json ./
-RUN npm install
-COPY . .
+COPY ["./src/openiddict-sample-client/package*.json", "./"]
+RUN npm ci
+COPY ["./src/openiddict-sample-client/.", "./"]
 RUN npm run build
 
-FROM nginx:1.24.0
-COPY nginx.conf /etc/nginx/nginx.conf
+FROM nginx:1.24.0 AS openiddict-client
+COPY ["./src/openiddict-sample-client/nginx.conf", "/etc/nginx/nginx.conf"]
+#COPY ["./src/openiddict-sample-client/nginx.conf", "/etc/nginx/conf.d/default.conf"]
 COPY --from=build /app/dist/openiddict-sample-client /usr/share/nginx/html
