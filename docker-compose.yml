@@ -15,7 +15,7 @@ services:
       ASPNETCORE_ENVIRONMENT: Development
       ASPNETCORE_HTTP_PORTS: 80
       ASPNETCORE_HTTPS_PORTS: 443
-      AUTHENTICATION__IDENTITY_PROVIDER_URL: https://localhost:5004
+      IDENTITYPROVIDERURL: https://localhost:5004
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
       - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
@@ -33,7 +33,7 @@ services:
       ASPNETCORE_ENVIRONMENT: Development
       ASPNETCORE_HTTP_PORTS: 80
       ASPNETCORE_HTTPS_PORTS: 443
-      CONNECTIONSTRINGS__OPENIDDICT_ID_DB: "Host=openiddict-id-db;Port=5432;Database=openiddict_sample_db;Username=dev;Password=dev;Include Error Detail=true"
+      OPENIDDICTSERVERDB: "Host=openiddict-id-db;Port=5432;Database=openiddict_sample_db;Username=dev;Password=dev;Include Error Detail=true"
     depends_on:
       - openiddict-id-db
     volumes:
@@ -47,3 +47,10 @@ services:
     environment:
       POSTGRES_USER: dev
       POSTGRES_PASSWORD: dev
+  openiddict-client:
+    container_name: openiddict-client
+    build:
+      context: .
+      dockerfile: ./src/openiddict-sample-client/Dockerfile
+    ports:
+      - "5005:80"

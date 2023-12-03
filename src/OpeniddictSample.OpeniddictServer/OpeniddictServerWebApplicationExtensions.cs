@@ -14,10 +14,10 @@ public static class OpeniddictServerWebApplicationExtensions
 
     using (IServiceScope scope = app.Services.CreateScope())
     {
-      scope.ServiceProvider.GetRequiredService<OpeniddictServerDbInitializer>()
-                           .InitializeAsync(CancellationToken.None)
-                           .GetAwaiter()
-                           .GetResult();
+      ActivatorUtilities.GetServiceOrCreateInstance<OpeniddictServerDbInitializer>(scope.ServiceProvider)
+                        .InitializeAsync(CancellationToken.None)
+                        .GetAwaiter()
+                        .GetResult();
     }
 
     return app;

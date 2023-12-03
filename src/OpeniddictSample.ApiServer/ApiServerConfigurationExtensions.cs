@@ -8,7 +8,7 @@ namespace Microsoft.Extensions.Configuration;
 
 public static class ApiServerConfigurationExtensions
 {
-  public static ApiServerAuthenticationSettings GetAuthenticationSettings(this IConfiguration configuration, string section = "AUTHENTICATION") =>
-    configuration.GetSection(section).Get<ApiServerAuthenticationSettings>() ??
+  public static ApiServerAuthenticationSettings GetAuthenticationSettings(this IConfiguration configuration) =>
+    configuration.Get<ApiServerAuthenticationSettings>() ??
     throw new Exception("There are no authenctication settings.");
 }

@@ -11,7 +11,9 @@ Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-co
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpeniddictSample.ApiServer", "src\OpeniddictSample.ApiServer\OpeniddictSample.ApiServer.csproj", "{107269C1-B0EA-4176-8F8D-DB7F268B32ED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpeniddictSample.ApiServer.Test", "test\OpeniddictSample.ApiServer.Test\OpeniddictSample.ApiServer.Test.csproj", "{7965A019-C025-4D57-A540-3C9CAF634711}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpeniddictSample.ApiServer.Test", "test\OpeniddictSample.ApiServer.Test\OpeniddictSample.ApiServer.Test.csproj", "{7965A019-C025-4D57-A540-3C9CAF634711}"
+EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "openiddict-sample-client", "src\openiddict-sample-client\openiddict-sample-client.esproj", "{15D77557-601E-40CE-AA84-C63284853E9C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,12 @@ Global
 		{7965A019-C025-4D57-A540-3C9CAF634711}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7965A019-C025-4D57-A540-3C9CAF634711}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7965A019-C025-4D57-A540-3C9CAF634711}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15D77557-601E-40CE-AA84-C63284853E9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15D77557-601E-40CE-AA84-C63284853E9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15D77557-601E-40CE-AA84-C63284853E9C}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{15D77557-601E-40CE-AA84-C63284853E9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15D77557-601E-40CE-AA84-C63284853E9C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15D77557-601E-40CE-AA84-C63284853E9C}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

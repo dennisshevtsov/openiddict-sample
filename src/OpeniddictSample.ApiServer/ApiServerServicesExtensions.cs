@@ -32,6 +32,7 @@ public static class ApiServerServicesExtensions
     this IServiceCollection services, ApiServerAuthenticationSettings settings)
   {
     ArgumentNullException.ThrowIfNull(services);
+    ArgumentNullException.ThrowIfNull(settings?.IdentityProviderUrl);
 
     services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddJwtBearer(options => options.Authority = settings.IdentityProviderUrl);
