@@ -3,21 +3,22 @@
 // See LICENSE in the project root for license information.
 
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using OpeniddictSample.OpeniddictServer;
 
 namespace Microsoft.Extensions.DependencyInjection;
 
 public static class OpeniddictServerServiceExtensions
 {
-  public static IServiceCollection SetUpOpenIddict(this IServiceCollection services, OpeniddictServerDbSettings dbSettings)
+  public static IServiceCollection SetUpOpenIddict(this IServiceCollection services)
   {
     ArgumentNullException.ThrowIfNull(services);
-    ArgumentNullException.ThrowIfNull(dbSettings?.ConnectionString);
 
-    services.AddDbContext<DbContext>(options =>
+    services.AddDbContext<DbContext>((provider, builder) =>
     {
-      options.UseNpgsql(dbSettings.ConnectionString);
-      options.UseOpenIddict();
+      OpeniddictServerDbSettings settings = provider.GetRequiredService<IOptions<OpeniddictServerDbSettings>>().Value;
+      builder.UseNpgsql(settings.OpeniddictServerDb);
+      builder.UseOpenIddict();
     });
 
     services.AddOpenIddict()
@@ -32,7 +33,6 @@ public static class OpeniddictServerServiceExtensions
             .AddValidation(builder =>
             {
               builder.UseLocalServer();
-              //builder.AddAudiences("openiddict-sample-api");
               builder.UseAspNetCore();
             });
 
