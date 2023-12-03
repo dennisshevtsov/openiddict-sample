@@ -6,5 +6,5 @@ namespace OpeniddictSample.OpeniddictServer;
 
 public sealed class OpeniddictServerDbSettings
 {
-  public string OpeniddictServerDb { get; init; } = string.Empty;
+  public string? OpeniddictServerDb { get; init; }
 }
