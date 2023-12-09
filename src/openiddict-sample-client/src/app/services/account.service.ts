@@ -9,13 +9,12 @@ import { SignInAccountRequestDto } from '../dtos';
 export class AccountService {
   public constructor(private readonly http: HttpClient) { }
 
-  public signin(command: SignInAccountRequestDto, xsrfToken: string) {
+  public signin(command: SignInAccountRequestDto) {
     const url = 'api/account/signin';
     const body = JSON.stringify(command);
     const options = {
       headers: {
         'Content-Type': 'application/json',
-        'X-XSRF-TOKEN': xsrfToken,
       },
     };
 
