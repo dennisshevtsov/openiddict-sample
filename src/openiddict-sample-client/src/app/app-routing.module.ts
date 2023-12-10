@@ -2,7 +2,9 @@ import { NgModule     } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { Routes       } from '@angular/router';
 
+import { HomeComponent   } from './components';
 import { SigninComponent } from './components';
+import { canActivateHome } from './authorization';
 
 const routes: Routes = [
   {
@@ -10,9 +12,14 @@ const routes: Routes = [
     component: SigninComponent,
   },
   {
+    path       : 'home',
+    canActivate: [canActivateHome],
+    component  : HomeComponent,
+  },
+  {
     path      : '',
     pathMatch : 'full',
-    redirectTo: 'signin',
+    redirectTo: 'home',
   },
 ];
 

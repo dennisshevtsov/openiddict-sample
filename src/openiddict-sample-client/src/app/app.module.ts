@@ -7,6 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent     } from './app.component';
 import { SigninComponent  } from './components';
 import { HomeComponent    } from './components';
+import { AuthorizationModule } from './authorization';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,13 @@ import { HomeComponent    } from './components';
     BrowserModule,
     HttpClientModule,
     ReactiveFormsModule,
+
+    AuthorizationModule.forRoot(
+      "https://localhost:5004/",
+      "http://localhost:4200/",
+      "test",
+      "test"),
+
     AppRoutingModule,
   ],
   providers: [],
