@@ -26,6 +26,7 @@ public static class OpeniddictServerServiceExtensions
                                        .UseDbContext<DbContext>())
             .AddServer(builder => builder.SetTokenEndpointUris("connect/token")
                                          .AllowClientCredentialsFlow()
+                                         .AllowAuthorizationCodeFlow()
                                          .AddDevelopmentEncryptionCertificate()
                                          .AddDevelopmentSigningCertificate()
                                          .UseAspNetCore()
