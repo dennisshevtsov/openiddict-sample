@@ -11,10 +11,16 @@ export class AccountService {
 
   public signin(command: SignInAccountRequestDto) {
     const url = 'https://localhost:5004/connect/token';
-    const body = JSON.stringify(command);
+    const body = new URLSearchParams({
+      email   : command.email,
+      password: command.password,
+      grant_type: 'authorization_code',
+      client_id: 'test',
+      code: 'test'
+    });
     const options = {
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/x-www-form-urlencoded',
       },
     };
 
