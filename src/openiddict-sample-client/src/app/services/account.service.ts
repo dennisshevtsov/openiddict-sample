@@ -10,7 +10,7 @@ export class AccountService {
   public constructor(private readonly http: HttpClient) { }
 
   public signin(command: SignInAccountRequestDto) {
-    const url = 'api/account/signin';
+    const url = 'https://localhost:5004/connect/token';
     const body = JSON.stringify(command);
     const options = {
       headers: {
