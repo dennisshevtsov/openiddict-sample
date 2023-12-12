@@ -25,7 +25,7 @@ public static class OpeniddictServerServiceExtensions
             .AddCore(builder => builder.UseEntityFrameworkCore()
                                        .UseDbContext<DbContext>())
             .AddServer(builder => builder.SetTokenEndpointUris("connect/token")
-                                         .SetAuthorizationEndpointUris("connect/authorize")
+                                         .SetAuthorizationEndpointUris("http://localhost:5005/signin")
                                          .AllowClientCredentialsFlow()
                                          .AllowAuthorizationCodeFlow()
                                          .AddDevelopmentEncryptionCertificate()
