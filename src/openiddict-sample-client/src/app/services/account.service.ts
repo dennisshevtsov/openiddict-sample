@@ -16,7 +16,8 @@ export class AccountService {
       password: command.password,
       grant_type: 'authorization_code',
       client_id: 'openiddict-sample-api',
-      code: 'test'
+      code_challenge: command.code,
+      code_challenge_method: 'S256'
     });
     const options = {
       headers: {

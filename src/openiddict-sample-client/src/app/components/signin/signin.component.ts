@@ -51,11 +51,21 @@ export class SigninComponent implements OnInit, OnDestroy {
 
   public ngOnInit(): void {
     this.sub.add(this.route.queryParamMap.subscribe(params => {
-      const returnUrl = params.get('returnUrl');
+      const returnUrl: string | null = params.get('redirect_uri');
 
-      if (returnUrl) {
-        this.returnUrlValue = returnUrl;
+      if (!returnUrl) {
+        throw 'No returnUrl provided.'
       }
+
+      this.returnUrlValue = returnUrl;
+
+      const code: string | null = params.get('code_challenge');
+
+      if (!code) {
+        throw 'No authorization code provided.';
+      }
+
+      this.vm.code = code;
     }));
 
     this.sub.add(this.form.valueChanges.subscribe(value => {
