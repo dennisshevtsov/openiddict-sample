@@ -26,12 +26,23 @@ public sealed class OpeniddictServerDbInitializer(DbContext dbContext, IOpenIddi
   private static OpenIddictApplicationDescriptor GetDefaultClient() => new()
   {
     ClientId = "openiddict-sample-api",
-    ClientSecret = "test",
     DisplayName = "Openiddict Sample API",
     Permissions =
     {
+      Permissions.Endpoints.Authorization,
       Permissions.Endpoints.Token,
-      Permissions.GrantTypes.ClientCredentials,
+      Permissions.GrantTypes.AuthorizationCode,
+      Permissions.GrantTypes.RefreshToken,
+      Permissions.ResponseTypes.Code,
+      Permissions.Scopes.Email,
+      Permissions.Scopes.Profile,
+      Permissions.Scopes.Roles,
+    },
+    RedirectUris =
+    {
+      new Uri("http://localhost:5005"),
+      new Uri("http://localhost:5005/signin-callback"),
+      new Uri("http://localhost:5005/silent-callback"),
     },
   };
 }
