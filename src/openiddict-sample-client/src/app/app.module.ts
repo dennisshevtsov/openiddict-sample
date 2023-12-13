@@ -22,9 +22,9 @@ import { AuthorizationModule } from './authorization';
 
     AuthorizationModule.forRoot(
       "https://localhost:5004/",
-      "http://localhost:4200/",
-      "test",
-      "test"),
+      "http://localhost:5005",
+      "openiddict-sample-api",
+      "openiddict-sample-api-scope"),
 
     AppRoutingModule,
   ],

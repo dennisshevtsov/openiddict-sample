@@ -15,7 +15,7 @@ export class AccountService {
       email   : command.email,
       password: command.password,
       grant_type: 'authorization_code',
-      client_id: 'test',
+      client_id: 'openiddict-sample-api',
       code: 'test'
     });
     const options = {
