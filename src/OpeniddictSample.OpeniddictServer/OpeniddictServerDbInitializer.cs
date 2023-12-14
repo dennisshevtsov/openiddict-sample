@@ -27,6 +27,7 @@ public sealed class OpeniddictServerDbInitializer(DbContext dbContext, IOpenIddi
   {
     ClientId = "openiddict-sample-api",
     DisplayName = "Openiddict Sample API",
+    Type = ClientTypes.Public,
     Permissions =
     {
       Permissions.Endpoints.Authorization,
@@ -43,6 +44,10 @@ public sealed class OpeniddictServerDbInitializer(DbContext dbContext, IOpenIddi
       new Uri("http://localhost:5005"),
       new Uri("http://localhost:5005/signin-callback"),
       new Uri("http://localhost:5005/silent-callback"),
+    },
+    Requirements =
+    {
+        Requirements.Features.ProofKeyForCodeExchange,
     },
   };
 }

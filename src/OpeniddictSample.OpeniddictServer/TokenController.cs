@@ -2,6 +2,9 @@
 // Licensed under the MIT License.
 // See LICENSE in the project root for license information.
 
+using Microsoft.AspNetCore;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using OpenIddict.Abstractions;
@@ -14,9 +17,12 @@ namespace OpeniddictSample.OpeniddictServer;
 [ApiController]
 public sealed class TokenController : ControllerBase
 {
+  [HttpPost("connect/authorize")]
   [HttpPost("connect/token")]
-  public IActionResult Get()
+  public async Task<IActionResult> Get()
   {
+    var request = HttpContext.GetOpenIddictServerRequest();
+
     ClaimsIdentity identity = new
     (
       authenticationType: TokenValidationParameters.DefaultAuthenticationType,

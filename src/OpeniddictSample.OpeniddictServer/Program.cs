@@ -8,6 +8,8 @@ WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 builder.Services.Configure<OpeniddictServerDbSettings>(builder.Configuration);
 builder.Services.SetUpOpenIddict();
 builder.Services.AddControllers();
+builder.Services.AddAuthentication("Bearer");
+builder.Services.AddAuthorization();
 builder.Services.AddCors();
 
 WebApplication app = builder.Build();
