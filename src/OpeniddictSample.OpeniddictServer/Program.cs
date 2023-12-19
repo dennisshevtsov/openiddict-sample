@@ -17,7 +17,7 @@ app.SetUpDb();
 app.UseRouting();
 app.UseCors(builder => builder.AllowAnyHeader()
                               .AllowAnyMethod()
-                              .WithOrigins("http://localhost:5005"));
+                              .AllowAnyOrigin());
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
