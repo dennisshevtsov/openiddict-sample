@@ -19,7 +19,7 @@ public sealed class TokenController : ControllerBase
 {
   [HttpPost("connect/authorize")]
   [HttpPost("connect/token")]
-  public async Task<IActionResult> Get()
+  public IActionResult Get()
   {
     var request = HttpContext.GetOpenIddictServerRequest();
 
@@ -39,6 +39,7 @@ public sealed class TokenController : ControllerBase
       [Destinations.AccessToken, Destinations.IdentityToken] :
       [Destinations.AccessToken]);
 
-    return SignIn(new ClaimsPrincipal(identity), OpenIddictServerAspNetCoreDefaults.AuthenticationScheme);
+    return NoContent();
+    //return SignIn(new ClaimsPrincipal(identity), OpenIddictServerAspNetCoreDefaults.AuthenticationScheme);
   }
 }
