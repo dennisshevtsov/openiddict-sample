@@ -12,7 +12,7 @@ export class AccountService {
   public signin(command: SignInAccountRequestDto) {
     const url = 'https://localhost:5004/connect/authorize';
     const body = new URLSearchParams({
-      email   : command.email,
+      username: command.email,
       password: command.password,
       grant_type: 'authorization_code',
       client_id: 'openiddict-sample-api',
