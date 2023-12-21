@@ -14,7 +14,7 @@ public static class OpeniddictServerServiceExtensions
   {
     ArgumentNullException.ThrowIfNull(services);
 
-    services.AddDbContext<DbContext>((provider, builder) =>
+    services.AddDbContext<ApplicationDbContext>((provider, builder) =>
     {
       OpeniddictServerDbSettings settings = provider.GetRequiredService<IOptions<OpeniddictServerDbSettings>>().Value;
       builder.UseNpgsql(settings.OpeniddictServerDb);
@@ -23,7 +23,7 @@ public static class OpeniddictServerServiceExtensions
 
     services.AddOpenIddict()
             .AddCore(builder => builder.UseEntityFrameworkCore()
-                                       .UseDbContext<DbContext>())
+                                       .UseDbContext<ApplicationDbContext>())
             .AddServer(builder => builder.SetTokenEndpointUris("connect/token")
                                          .SetAuthorizationEndpointUris("http://localhost:5005/signin", "connect/authorize")
                                          .AllowClientCredentialsFlow()
