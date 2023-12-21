@@ -1,0 +1,17 @@
+<form method="post" [formGroup]="form">
+  <div>
+    <label for="email">Email</label>
+    <input id="email"
+           type="email"
+           formControlName="email" />
+  </div>
+  <div>
+    <label for="password">Password</label>
+    <input id="password"
+           type="password"
+           formControlName="password" />
+  </div>
+  <button (click)="signin()">
+    <span>Sign In</span>
+  </button>
+</form>
