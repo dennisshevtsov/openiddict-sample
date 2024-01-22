@@ -2,35 +2,12 @@
 // Licensed under the MIT License.
 // See LICENSE in the project root for license information.
 
-using Microsoft.AspNetCore.Identity;
-using OpeniddictSample.OpeniddictServer;
-
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
-builder.Services.Configure<OpeniddictServerDbSettings>(builder.Configuration);
-builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
-                {
-                  options.Password.RequiredUniqueChars = 1;
-                  options.Password.RequiredLength = 4;
-                  options.Password.RequireNonAlphanumeric = false;
-                  options.Password.RequireUppercase = false;
-                  options.Password.RequireLowercase = false;
-                  options.Password.RequireDigit = false;
-                })
-                .AddEntityFrameworkStores<ApplicationDbContext>()
-                .AddDefaultTokenProviders();
-builder.Services.SetUpOpenIddict();
+builder.Services.SetUpOpenIddict(builder.Configuration.GetDbSettings());
 builder.Services.AddControllers();
-builder.Services.AddAuthentication("Bearer");
-builder.Services.AddAuthorization();
-builder.Services.AddCors();
 
 WebApplication app = builder.Build();
 app.SetUpDb();
 app.UseRouting();
-app.UseCors(builder => builder.AllowAnyHeader()
-                              .AllowAnyMethod()
-                              .AllowAnyOrigin());
-app.UseAuthentication();
-app.UseAuthorization();
 app.MapControllers();
 app.Run();
