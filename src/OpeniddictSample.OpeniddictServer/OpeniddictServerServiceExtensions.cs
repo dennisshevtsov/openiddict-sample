@@ -3,40 +3,38 @@
 // See LICENSE in the project root for license information.
 
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
 using OpeniddictSample.OpeniddictServer;
 
 namespace Microsoft.Extensions.DependencyInjection;
 
 public static class OpeniddictServerServiceExtensions
 {
-  public static IServiceCollection SetUpOpenIddict(this IServiceCollection services)
+  public static IServiceCollection SetUpOpenIddict(this IServiceCollection services, OpeniddictServerDbSettings dbSettings)
   {
     ArgumentNullException.ThrowIfNull(services);
+    ArgumentNullException.ThrowIfNull(dbSettings?.OpeniddictServerDb);
 
-    services.AddDbContext<ApplicationDbContext>((provider, builder) =>
+    services.AddScoped<IdDbInitializer>();
+
+    services.AddDbContext<DbContext>(options =>
     {
-      OpeniddictServerDbSettings settings = provider.GetRequiredService<IOptions<OpeniddictServerDbSettings>>().Value;
-      builder.UseNpgsql(settings.OpeniddictServerDb);
-      builder.UseOpenIddict();
+      options.UseNpgsql(dbSettings.OpeniddictServerDb);
+      options.UseOpenIddict();
     });
 
     services.AddOpenIddict()
             .AddCore(builder => builder.UseEntityFrameworkCore()
-                                       .UseDbContext<ApplicationDbContext>())
+                                       .UseDbContext<DbContext>())
             .AddServer(builder => builder.SetTokenEndpointUris("connect/token")
-                                         .SetAuthorizationEndpointUris("http://localhost:5005/signin", "connect/authorize")
                                          .AllowClientCredentialsFlow()
-                                         .AllowAuthorizationCodeFlow()
                                          .AddDevelopmentEncryptionCertificate()
                                          .AddDevelopmentSigningCertificate()
                                          .UseAspNetCore()
-                                         .EnableTokenEndpointPassthrough()
-                                         .EnableAuthorizationEndpointPassthrough()
-                                         .DisableTransportSecurityRequirement())
+                                         .EnableTokenEndpointPassthrough())
             .AddValidation(builder =>
             {
               builder.UseLocalServer();
+              //builder.AddAudiences("openiddict-sample-api");
               builder.UseAspNetCore();
             });
 
