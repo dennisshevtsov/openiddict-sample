@@ -47,10 +47,3 @@ services:
     environment:
       POSTGRES_USER: dev
       POSTGRES_PASSWORD: dev
-  openiddict-client:
-    container_name: openiddict-client
-    build:
-      context: .
-      dockerfile: ./src/openiddict-sample-client/Dockerfile
-    ports:
-      - "5005:80"
